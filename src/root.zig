@@ -76,6 +76,7 @@ pub const Reader = struct {
         const result = try self.reader.interface.takeDelimiter('\n');
         const empty: []u8 = "";
 
+        // use split-iterator to prevent the jankiness of leftover stuff in stdin
         var it = std.mem.splitAny(u8, std.mem.trim(u8, result orelse empty, "\r"), " ");
         const final = it.next();
 
