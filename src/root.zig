@@ -23,6 +23,7 @@ pub const Writer = struct {
     pub fn initStderr(io: std.Io, allocator: std.mem.Allocator, defaultBufferCapacity: usize) !Self { return init(io, .stderr(), allocator, defaultBufferCapacity); }
 
     pub fn deinit(self: *Self) void {
+        self.flush() catch {};
         self.allocator.free(self.buffer);
     }
 
@@ -41,11 +42,11 @@ pub const Writer = struct {
     }
 
     pub fn printlineIgnoreError(self: *Self, comptime fmt: []const u8, args: anytype) void {
-        _ = self.printline(fmt, args) catch 0;
+        self.printline(fmt, args) catch {};
     }
 
     pub fn printIgnoreError(self: *Self, comptime fmt: []const u8, args: anytype) void {
-        _ = self.print(fmt, args) catch 0;
+        self.print(fmt, args) catch {};
     }
 };
 
