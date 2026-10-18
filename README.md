@@ -1,4 +1,5 @@
 # RustyIO
+## (THIS PROJECT IS ONLY COMPATIBLE WITH ZIG 0.16.0)
 
 #### AI usage: In my previous IO helper I used AI for basically everything but this time I actually sat down and read the documentation so I could make this work!
 
